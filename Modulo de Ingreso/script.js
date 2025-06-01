@@ -98,6 +98,26 @@ document.querySelector('.formulario_register').addEventListener('submit', functi
         alert('Por favor, completa todos los campos de registro.');
         return;
     }
-    // Envio de los datos al servidor
-    alert('Registro exitoso\nNombre: ' + nombre + '\nCorreo: ' + email);
+    // Enviar datos al servidor
+    fetch('http://localhost:3310/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, usuario, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert('Registro exitoso');
+            // Puedes redirigir si quieres
+            // window.location.href = "Modulo de inicio/index.html";
+        } else {
+            alert(data.message || 'Error en el registro');
+        }
+    })
+    .catch(() => alert('Error al conectar con el servidor'));
+});
+
+document.getElementById('formulario_login').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Funcionalidad de inicio de sesión aún no implementada.');
 });
