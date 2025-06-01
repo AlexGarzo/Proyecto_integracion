@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Módulo de Realización de Facturas</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="factura-container">
+        <h2>Realizar Factura</h2>
+        <form id="formFactura">
+            <input type="text" id="clienteNombre" placeholder="Nombre del Cliente" required />
+            <input type="text" id="producto" placeholder="Producto" required />
+            <input type="number" id="cantidad" placeholder="Cantidad" min="1" required />
+            <input type="number" id="precio" placeholder="Precio por Unidad" min="0.01" step="0.01" required />
+            <button type="submit">Generar Factura</button>
+        </form>
+        <div id="resultadoFactura" class="resultado" style="display:none;"></div>
+    </div>
+
+    <script>
+        const formFactura = document.getElementById('formFactura');
+        const resultadoFactura = document.getElementById('resultadoFactura');
+
+        formFactura.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const clienteNombre = document.getElementById('clienteNombre').value.trim();
+            const producto = document.getElementById('producto').value.trim();
+            const cantidad = Number(document.getElementById('cantidad').value);
+            const precio = Number(document.getElementById('precio').value);
+
+            if (!clienteNombre || !producto || cantidad <= 0 || precio <= 0) {
+                alert('Por favor ingresa todos los datos correctamente');
+                return;
+            }
+
+            const total = cantidad * precio;
+
+            resultadoFactura.style.display = 'block';
+            resultadoFactura.innerHTML = `
+                <strong>Factura Generada</strong><br/>
+                Cliente: ${clienteNombre}<br/>
+                Producto: ${producto}<br/>
+                Cantidad: ${cantidad}<br/>
+                Precio por Unidad: $${precio.toFixed(2)}<br/>
+                <strong>Total a Pagar: $${total.toFixed(2)}</strong>
+            `;
+
+            formFactura.reset();
+        });
+    </script>
+</body>
+</html>

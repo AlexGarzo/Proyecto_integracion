@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactuPlus - Registro de Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./Fact 1.png" alt="Logo" width="500">
+        </div>
+        <div class="features">
+            <h1>INGRESO Y MODIFICACIÓN DE PRODUCTOS</h1>
+            <form action="./guardar_producto.php" method="POST">
+                <div>
+                    <label for="nombre_producto">Nombre del Producto:</label>
+                    <input type="text" id="nombre_producto" name="nombre_producto" required>
+                </div>
+                <div>
+                    <label for="codigo">Código del Producto:</label>
+                    <input type="text" id="codigo" name="codigo" required>
+                </div>
+                <div>
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" name="precio" required>
+                </div>
+                <div>
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" required>
+                </div>
+                <div>
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

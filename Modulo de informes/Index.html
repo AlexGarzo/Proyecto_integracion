@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactuPlus - Generación de Informes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./Fact 1.png" alt="Logo" width="500">
+        </div>
+        <div class="features">
+            <h1>GENERACIÓN DE INFORMES</h1>
+            <form action="./generar_informe.php" method="POST">
+                <div>
+                    <label for="fecha_inicio">Fecha de Inicio:</label>
+                    <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+                </div>
+                <div>
+                    <label for="fecha_fin">Fecha de Fin:</label>
+                    <input type="date" id="fecha_fin" name="fecha_fin" required>
+                </div>
+                <div>
+                    <button type="submit">Generar Informe</button>
+                </div>
+            </form>
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo para el gráfico
+        const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Ventas',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                data: [12, 19, 3, 5, 2, 3],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Informe de Ventas'
+                    }
+                }
+            },
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</body>
+</html>
